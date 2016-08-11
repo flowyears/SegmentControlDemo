@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "RKSwipeBetweenViewControllers.h"
+
 
 @interface AppDelegate ()
 
@@ -17,6 +20,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                                           navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                                         options:nil];
+    RKSwipeBetweenViewControllers *navigationController = [[RKSwipeBetweenViewControllers alloc] initWithRootViewController:pageController];
+    navigationController.buttonText = @[@"待办事项",@"完成",@"hhhhh"];
+    
+    ViewController *vc1 = [[ViewController alloc] init];
+    vc1.view.backgroundColor = [UIColor redColor];
+    
+    ViewController *vc2 = [[ViewController alloc] init];
+    vc2.view.backgroundColor = [UIColor greenColor];
+    
+    ViewController *vc3 = [[ViewController alloc] init];
+    vc3.view.backgroundColor = [UIColor blueColor];
+
+    [navigationController.viewControllerArray addObjectsFromArray:@[vc1,vc2,vc3]];
+    self.window.rootViewController = navigationController;
+    
     return YES;
 }
 
